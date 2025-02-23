@@ -69,8 +69,8 @@
       });
 
     $.get('./FEHD_FL_converted.v1.csv', function(csvString) {
-      var markers = [];
       var data = Papa.parse(csvString, {header: true, dynamicTyping: true}).data;
+      var row = data[i];
       for (var i in data) {
         var marker = L.marker(
           [row.Latitude, row.Longitude],
