@@ -68,7 +68,7 @@
         iconAnchor: [10, 0],
       });
 
-    $.get('./FEHD_FL_converted.v1.csv', function(csvString) {
+    $.get('./FEHD_FL_converted.v2.csv', function(csvString) {
       var data = Papa.parse(csvString, {header: true, dynamicTyping: true}).data;
       var row = data[i];
       for (var i in data) {
