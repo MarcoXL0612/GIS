@@ -68,7 +68,7 @@
         iconAnchor: [10, 0],
       });
 
-    $.get('./FEHD_FL_converted_st.csv', function(csvString) {
+$.get('./FEHD_FL_converted_st.csv', function(csvString) {
 
     // Use PapaParse to convert string to array of objects
     var data = Papa.parse(csvString, {header: true, dynamicTyping: true}).data;
@@ -86,7 +86,7 @@
     }
 
   });
-      markersCanvas.addMarkers(markers);
+  
     </script>
   </body>
 </html>
