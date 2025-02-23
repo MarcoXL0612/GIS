@@ -65,13 +65,28 @@
 
       var marker = L.marker([row.Latitude, row.Longitude], {
         opacity: 1
-      }).bindPopup(row.Title);
+      }).bindPopup(row.Title)
+          .on({
+            mouseover(e) {
+              this.openPopup();
+            },
+            mouseout(e) {
+              this.closePopup();
+            },
+          });
       
       marker.addTo(map);
     }
 
   });
-
+  var markersCanvas = new L.MarkersCanvas();
+  markersCanvas.addTo(map);
+  var icon = L.icon({
+        iconUrl: "marker.png",
+        iconSize: [20, 32],
+        iconAnchor: [10, 0],
+      });
+	  
   map.attributionControl.setPrefix(
     'View <a href="https://github.com/HandsOnDataViz/leaflet-map-csv" target="_blank">code on GitHub</a>'
   );
