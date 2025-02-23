@@ -68,27 +68,24 @@
         iconAnchor: [10, 0],
       });
 
-    $.get('./FEHD_FL_converted.v2.csv', function(csvString) {
-      var data = Papa.parse(csvString, {header: true, dynamicTyping: true}).data;
+    $.get('./FEHD_FL_converted_st.csv', function(csvString) {
+
+    // Use PapaParse to convert string to array of objects
+    var data = Papa.parse(csvString, {header: true, dynamicTyping: true}).data;
+
+    // For each row in data, create a marker and add it to the map
+    // For each row, columns `Latitude`, `Longitude`, and `Title` are required
+    for (var i in data) {
       var row = data[i];
-      for (var i in data) {
-        var marker = L.marker(
-          [row.Latitude, row.Longitude],
-          { icon }
-        )
-          .bindPopup("I Am " + i)
-          .on({
-            mouseover(e) {
-              this.openPopup();
-            },
-            mouseout(e) {
-              this.closePopup();
-            },
-          });
-        marker.addTo(map);
-        markers.push(marker);
-      }
-    });
+
+      var marker = L.marker([row.Latitude, row.Longitude], {
+        opacity: 1
+      }).bindPopup(row.Title);
+      
+      marker.addTo(map);
+    }
+
+  });
       markersCanvas.addMarkers(markers);
     </script>
   </body>
